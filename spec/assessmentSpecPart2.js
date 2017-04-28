@@ -22,7 +22,7 @@ describe('Part 2:', function() {
   describe('Horton', function() {
 
     it('explicit binding used', function() {
-      expect(large()).toEqual('My name is  and I am very heavy!')
+      expect(large()).toEqual('My name is Trogdor and I am very heavy!')
       expect(large.bind(elephant) + '').toEqual(boundToElephant + '')
     })
 

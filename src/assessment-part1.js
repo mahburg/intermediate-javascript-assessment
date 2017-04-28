@@ -174,6 +174,7 @@ var theAnswer = "Unknown";
 
 function promiseCatcher(input) {
   input.then(function (response) {
+    console.log(response);
     theAnswer = response;
   })
 }
