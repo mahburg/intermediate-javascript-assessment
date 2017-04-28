@@ -42,11 +42,19 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
+  promise = promise.then(function (response) {
+    firstUser = response.data[0];
+    console.log(firstUser);
+  }).then(function (response) {
+    thirdUser = response.data[2];
+    console.log(thirdUser);
 
-
+  })
   return promise;
 }
 
+// console.log(thirdUser);
+// console.log("END");
 
 
 // *************
@@ -68,11 +76,13 @@ function noWeakLink() {
 var elephant = {
   name: 'Horton'
 }
+
 function large() {
 
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
+let boundToElephant = large.bind(elephant);
 
 
 
@@ -86,6 +96,9 @@ function large() {
 // Use explicit binding to give capacity the context of crew and return the result.
 
 // CODE HERE...
+function deathStar(capacity, crew) {
+  return capacity.bind(crew);
+}
 
 
 
@@ -101,6 +114,11 @@ function large() {
 // The closure function will returns the combined value of assets and liabilities.
 
 // CODE HERE...
+function accountingOffice(assets) {
+  return function (liabilities) {
+    return liabilities + assets;
+  }
+}
 
 
 
@@ -126,6 +144,17 @@ function large() {
 // };
 
 // CODE HERE...
+function forgetter(nameIn) {
+  let obj = {
+    name: nameIn,
+    remember: []
+  }
+  return function rememberall(item) {
+    obj.remember.push(item);
+    return obj;
+  }
+}
+
 
 
 
@@ -154,3 +183,25 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+function frodo(startingHungerValue, startingDangerValue) {
+  let hungerF = startingHungerValue,
+    dangerF = startingDangerValue;
+  return {
+    dinnerOverFire: function () {
+      hungerF < 25 ? hungerF = 0 : hungerF -= 25;
+      dangerF > 60 ? dangerF = 100 : dangerF += 40;
+      return {
+        hunger: hungerF,
+        danger: dangerF
+      }
+    },
+    hidingInBush: function () {
+      hungerF > 65 ? hungerF = 100 : hungerF += 35;
+      dangerF < 20 ? dangerF = 0 : dangerF -= 20;
+      return {
+        hunger: hungerF,
+        danger: dangerF
+      }
+    }
+  }
+}
